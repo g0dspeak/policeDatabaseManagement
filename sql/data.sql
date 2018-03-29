@@ -75,7 +75,7 @@ insert into Court values
 ('PSH-TED',12448675,'Abdul Hameed Dogar','Curtis Fisch was found guilty and charged with arson - damage to Betty Boudreauxs property. Serving time: 3 months + 1 year community service', 'guilty', '2009-12-30');
 
 insert into Court values
-('MEP-HGF',36723099,'Hamoodur Rahman','John Yonder was found not guilty', 'not guilty', '2013-05-27');
+('MEP-HGF',36723099,'Hamoodur Rahman','John Yonder was found not guilty', 'guilty', '2013-05-27');
 
 insert into Court values
 ('WEH-XQR',59871234,'Alvin Robert Cornelius','Bobby Johnson was charged with domestic assault and found guilty. Serving time: 8 months + $20,000 fine', 'guilty', '2016-08-26');
@@ -87,7 +87,7 @@ insert into Court values
 ('LBN-LOH',68888757,'Alvin Robert Cornelius','June V. Parker was charged with tax evasion and was found guilty. Her accountant Karen Rickard was not found at fault. Serving time: 5 years', 'guilty', '2007-12-25');
 
 insert into Court values
-('CTQ-III',07053819,'Ajmal Mian','Larry K. Smith was charged with tax evasion and was found not guilty','not guilty', '2012-08-22');
+('CTQ-III',07053819,'Ajmal Mian','Larry K. Smith was charged with tax evasion and was found not guilty','guilty', '2012-08-22');
 
 insert into Court values
 ('BJK-YHA',89355176,'Bashir Jehangiri','Mary G. Ledoux was charged with bribing a public official and was found guilty. Serving time: 12 years','guilty', '2006-08-01');
@@ -96,7 +96,7 @@ insert into Court values
 ('UTB-MCF',90813591,'Hamoodur Rahman','Bridgette K. Ledoux was charged with extorsion and was found guilty. Peggy Baker, Gayle Rice were compensated. Serving time: 25 years + $50,000 fine','guilty', '2013-09-21');
 
 insert into Court values
-('KUI-SHJ',75073947,'Hamoodur Rahman','Shirley S. Price was found not guilty','not guilty','2017-07-11');
+('KUI-SHJ',75073947,'Hamoodur Rahman','Shirley S. Price was found not guilty','guilty','2017-07-11');
 
 insert into Court values
 ('SFR-DMV',88525275,'Alvin Robert Cornelius','Joyce J. Sommerville was charged with 3 counts theft was was found guilty. Serving time: none + $10,000 fine','guilty','2013-02-28');
@@ -108,71 +108,71 @@ insert into Court values
 ('RUA-CCB',21460264,'Ajmal Mian','Tawnya G. Knauss was charged with theft and was found guilty. Serving time: 3 months','guilty','2014-02-14');
 
 insert into Court values
-('TBM-TIT',41055566,'Bashir Jehangiri','Joanna A. Moore was charged with homicide and was found not guilty. Witness/survivor Jeannette Osborn reported the incident.','not guilty','2013-04-09');
+('TBM-TIT',41055566,'Bashir Jehangiri','Joanna A. Moore was charged with homicide and was found not guilty. Witness/survivor Jeannette Osborn reported the incident.','guilty','2013-04-09');
 
 
 insert into People values
-('587-230-4753',362551764,'Olivia Champion','1395 Churchill Plaza');
+('587-230-4753',362551764,'Olivia Champion','1395 Churchill Plaza', 20);
 
 insert into People values
-('604-221-2683',360978753,'Curtis Frisch','2231 Glen Long Ave');
+('604-221-2683',360978753,'Curtis Frisch','2231 Glen Long Ave', 43);
 
 insert into People values
-('403-879-2849',251161287,'John Yoder','4888 Dundas St ');
+('403-879-2849',251161287,'John Yoder','4888 Dundas St ', 21);
 
 insert into People values
-('289-298-3966',580372514,'Bobby Johnson','2540 Maclaren St');
+('289-298-3966',580372514,'Bobby Johnson','2540 Maclaren St', 66);
 
 insert into People values
-('289-857-7824',321470635,'Andrew Rice','1308 Bay St');
+('289-857-7824',321470635,'Andrew Rice','1308 Bay St', 30);
 
 insert into People values
-('613-524-4145',106225829,'June V. Parker','2574 Dominion St');
+('613-524-4145',106225829,'June V. Parker','2574 Dominion St', 38);
 
 insert into People values
-('905-251-7486',253585300,'Larry K. Smith','4301 Davis Drive');
+('905-251-7486',253585300,'Larry K. Smith','4301 Davis Drive', 55);
 
 insert into People values
-('778-893-6124',690192607,'Mary G. Ledoux','4328 Royal Avenue');
+('778-893-6124',690192607,'Mary G. Ledoux','4328 Royal Avenue', 52);
 
 insert into People values
-('250-509-0563',322859865,'Bridgette K. Ledoux','4688 102nd Avenue');
+('250-509-0563',322859865,'Bridgette K. Ledoux','4688 102nd Avenue', 34);
 
 insert into People values
-('867-994-8404',970216780,'Shirley S. Price','4591 47th Avenue');
+('867-994-8404',970216780,'Shirley S. Price','4591 47th Avenue', 27);
 
 insert into People values
-('780-621-3871',573160412,'Joyce J. Sommerville','4291 Park Ct');
+('780-621-3871',573160412,'Joyce J. Sommerville','4291 Park Ct', 82);
 
 insert into People values
-('403-522-6865',555839346,'Tawnya G. Knauss','2517 Port Wash Road');
+('403-522-6865',555839346,'Tawnya G. Knauss','2517 Port Wash Road', 69);
 
 insert into People values
-('780-918-8496',785088672,'Kathy G. Schwartz','26 184th Street');
+('780-918-8496',785088672,'Kathy G. Schwartz','26 184th Street', 42);
 
 insert into People values
-('613-850-7191',857181190,'Joanne A. Moore','639 Carling Avenue');
+('613-850-7191',857181190,'Joanne A. Moore','639 Carling Avenue', 38);
 
 insert into People values
-('450-560-2186',850346910,'Lois M. Jones','413 St-Jerome Street');
+('450-560-2186',850346910,'Lois M. Jones','413 St-Jerome Street', 17);
 
 insert into People values
-('905-456-1291',228844098,'Betty G. Boudreaux','4770 Orenda Rd');
+('905-456-1291',228844098,'Betty G. Boudreaux','4770 Orenda Rd', 43);
 
 insert into People values
-('450-560-2186',850346920,'Susan J. Cohrs','386 Vict Park Ave');
+('450-560-2186',850346920,'Susan J. Cohrs','386 Vict Park Ave', 37);
 
 insert into People values
-('780-795-9580',342497286,'Karen M. Rickard','4899 Park Ct');
+('780-795-9580',342497286,'Karen M. Rickard','4899 Park Ct', 56);
 
 insert into People values
-('317-208-8758',077916732,'Jeanette S. Osborn','4710 Henery Street');
+('317-208-8758',077916732,'Jeanette S. Osborn','4710 Henery Street', 71);
 
 insert into People values
-('514-499-4818',256828674,'Peggy D. Baker','2931 rue Ont Ouest');
+('514-499-4818',256828674,'Peggy D. Baker','2931 rue Ont Ouest', 33);
 
 insert into People values
-('867-634-5372',171430713,'Gayle K. Rice','4009 47th Avenue');
+('867-634-5372',171430713,'Gayle K. Rice','4009 47th Avenue', 36);
 
 
 -- Victim
