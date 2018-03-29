@@ -75,7 +75,7 @@ insert into Court values
 ('PSH-TED',12448675,'Abdul Hameed Dogar','Curtis Fisch was found guilty and charged with arson - damage to Betty Boudreauxs property. Serving time: 3 months + 1 year community service', 'guilty', '2009-12-30');
 
 insert into Court values
-('MEP-HGF',36723099,'Hamoodur Rahman','John Yonder was found not guilty', 'guilty', '2013-05-27');
+('MEP-HGF',36723099,'Hamoodur Rahman','John Yonder was found not guilty', 'not guilty', '2013-05-27');
 
 insert into Court values
 ('WEH-XQR',59871234,'Alvin Robert Cornelius','Bobby Johnson was charged with domestic assault and found guilty. Serving time: 8 months + $20,000 fine', 'guilty', '2016-08-26');
@@ -87,7 +87,7 @@ insert into Court values
 ('LBN-LOH',68888757,'Alvin Robert Cornelius','June V. Parker was charged with tax evasion and was found guilty. Her accountant Karen Rickard was not found at fault. Serving time: 5 years', 'guilty', '2007-12-25');
 
 insert into Court values
-('CTQ-III',07053819,'Ajmal Mian','Larry K. Smith was charged with tax evasion and was found not guilty','guilty', '2012-08-22');
+('CTQ-III',07053819,'Ajmal Mian','Larry K. Smith was charged with tax evasion and was found not guilty','not guilty', '2012-08-22');
 
 insert into Court values
 ('BJK-YHA',89355176,'Bashir Jehangiri','Mary G. Ledoux was charged with bribing a public official and was found guilty. Serving time: 12 years','guilty', '2006-08-01');
@@ -96,7 +96,7 @@ insert into Court values
 ('UTB-MCF',90813591,'Hamoodur Rahman','Bridgette K. Ledoux was charged with extorsion and was found guilty. Peggy Baker, Gayle Rice were compensated. Serving time: 25 years + $50,000 fine','guilty', '2013-09-21');
 
 insert into Court values
-('KUI-SHJ',75073947,'Hamoodur Rahman','Shirley S. Price was found not guilty','guilty','2017-07-11');
+('KUI-SHJ',75073947,'Hamoodur Rahman','Shirley S. Price was found not guilty','not guilty','2017-07-11');
 
 insert into Court values
 ('SFR-DMV',88525275,'Alvin Robert Cornelius','Joyce J. Sommerville was charged with 3 counts theft was was found guilty. Serving time: none + $10,000 fine','guilty','2013-02-28');
@@ -108,7 +108,7 @@ insert into Court values
 ('RUA-CCB',21460264,'Ajmal Mian','Tawnya G. Knauss was charged with theft and was found guilty. Serving time: 3 months','guilty','2014-02-14');
 
 insert into Court values
-('TBM-TIT',41055566,'Bashir Jehangiri','Joanna A. Moore was charged with homicide and was found not guilty. Witness/survivor Jeannette Osborn reported the incident.','guilty','2013-04-09');
+('TBM-TIT',41055566,'Bashir Jehangiri','Joanna A. Moore was charged with homicide and was found not guilty. Witness/survivor Jeannette Osborn reported the incident.','not guilty','2013-04-09');
 
 
 insert into People values
