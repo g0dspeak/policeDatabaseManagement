@@ -33,7 +33,7 @@ import javax.swing.JSeparator;
 
 public class FrontEnd {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField recordText;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -84,7 +84,7 @@ public class FrontEnd {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 450);
+		frame.setBounds(100, 100, 990, 552);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -333,11 +333,11 @@ public class FrontEnd {
 		panel_1.add(arsonS);
 		
 		JCheckBox assaultS = new JCheckBox("Assault");
-		assaultS.setBounds(158, 60, 65, 21);
+		assaultS.setBounds(168, 60, 78, 21);
 		panel_1.add(assaultS);
 		
 		JCheckBox burglaryS = new JCheckBox("Burglary");
-		burglaryS.setBounds(235, 60, 65, 21);
+		burglaryS.setBounds(6, 88, 84, 21);
 		panel_1.add(burglaryS);
 		
 		JLabel lblStartDate = new JLabel("Start Date:");
@@ -352,44 +352,82 @@ public class FrontEnd {
 		JLabel lblEndDate = new JLabel("End Date:");
 		lblEndDate.setBounds(10, 34, 62, 13);
 		panel_1.add(lblEndDate);
-		
+
 		endDate = new JTextField();
 		endDate.setColumns(10);
 		endDate.setBounds(82, 31, 135, 19);
 		panel_1.add(endDate);
 		
-		JButton btnFindRecord = new JButton("Find Records");
-		btnFindRecord.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				table.setModel(DbUtils.resultSetToTableModel(driver.getTest()));
 
-				//check start date, startDate
-				//check end date, endDate
-				//homicideS
-				//arsonS
-				//assaultS
-				//burglaryS
-				
 
-				
-			}
-		});
-		btnFindRecord.setBounds(66, 88, 120, 21);
-		panel_1.add(btnFindRecord);
 		
 		JLabel lblRecordId_1 = new JLabel("Record ID:");
-		lblRecordId_1.setBounds(16, 140, 72, 13);
+		lblRecordId_1.setBounds(16, 204, 72, 13);
 		panel_1.add(lblRecordId_1);
 		
 		textField_16 = new JTextField();
-		textField_16.setBounds(82, 137, 135, 20);
+		textField_16.setBounds(82, 201, 135, 20);
 		panel_1.add(textField_16);
 		textField_16.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 119, 340, 2);
+		separator.setBounds(6, 183, 340, 2);
 		panel_1.add(separator);
+		
+		JButton btnTotalCounts = new JButton("Total counts");
+		btnTotalCounts.setBounds(180, 152, 120, 21);
+		panel_1.add(btnTotalCounts);
+		
+		JButton btnRecordDetails = new JButton("Record details");
+		btnRecordDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRecordDetails.setBounds(10, 231, 120, 21);
+		panel_1.add(btnRecordDetails);
+		
+		JCheckBox publicS = new JCheckBox("Public indecency");
+		publicS.setBounds(92, 111, 179, 21);
+		panel_1.add(publicS);
+		
+		JCheckBox taxS = new JCheckBox("Tax Evasion");
+		taxS.setBounds(248, 60, 123, 21);
+		panel_1.add(taxS);
+		
+		JCheckBox briberyS = new JCheckBox("Bribery");
+		briberyS.setBounds(168, 88, 78, 21);
+		panel_1.add(briberyS);
+		
+		JCheckBox extortionS = new JCheckBox("Extortion");
+		extortionS.setBounds(6, 111, 84, 21);
+		panel_1.add(extortionS);
+		
+		JCheckBox theftS = new JCheckBox("Theft");
+		theftS.setBounds(92, 90, 72, 21);
+		panel_1.add(theftS);
+		
+		JCheckBox falseS = new JCheckBox("False Pretenses");
+		falseS.setBounds(246, 88, 125, 21);
+
+		JButton btnFindRecord = new JButton("Find Records");
+		btnFindRecord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+
+				//table.setModel(DbUtils.resultSetToTableModel(driver.getTest()));
+				table.setModel(DbUtils.resultSetToTableModel(driver.getRecordFilter(startDate.getText(), endDate.getText(), 
+									homicideS.isSelected(), arsonS.isSelected(), assaultS.isSelected(), burglaryS.isSelected(), 
+									publicS.isSelected(), taxS.isSelected(), briberyS.isSelected(), extortionS.isSelected(), 
+									falseS.isSelected(), theftS.isSelected())));
+
+				//table.setModel(DbUtils.resultSetToTableModel(driver.getRecord(startDate.getText(), endDate.getText())));
+				//getRecordFilter
+				
+			}
+		});	panel_1.add(falseS);
+		btnFindRecord.setBounds(50, 152, 120, 21);
+		panel_1.add(btnFindRecord);
+		
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

@@ -1,6 +1,7 @@
 package cs304;
 
 import java.sql.*;
+import java.text.DateFormat;
 
 public class Driver {
 
@@ -51,9 +52,18 @@ public class Driver {
 	 */
 
 	//Selection and projection query
-	public ResultSet getRecord(String startDate, String endDate, boolean homicide, boolean arson, boolean assult, boolean burgulary) {
+	public ResultSet getRecord(String startDate, String endDate) {
 		ResultSet rs = null;
-		String query = "SELECT * FROM Record";
+		String query = "SELECT * FROM record";
+		boolean where = false;
+		if(!startDate.equals("")) {
+			where = true;
+			query += " where case_date >= '" + startDate + "'";
+			if(!endDate.equals("")) {
+				query += " and case_date <= '" + endDate + "'";
+			}
+		}
+		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
 		} catch (SQLException e) {
@@ -62,8 +72,135 @@ public class Driver {
 		return rs;
 	}
 	
-	
 	//Join query
+	public ResultSet getRecordFilter(String startDate, String endDate, boolean homicide, boolean arson, boolean assault, boolean burglary,
+											boolean publicS, boolean tax, boolean bribery, boolean extortion, boolean falseS, boolean theft) {
+		ResultSet rs = null;
+		boolean where = false;
+		boolean crt = false;
+		String query = "";
+		if(homicide || arson || assault || burglary || publicS || tax || bribery || extortion || falseS || theft)
+			crt = true;
+		if(crt)
+			query = "SELECT * FROM record INNER JOIN criminalRecordType crt ON crt.recordID = record.id";
+		else
+			query = "SELECT * FROM record";
+		
+		if(homicide) {
+			if(!where) {
+				query += " WHERE";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Homicide'";
+		}
+		if(arson) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Arson'";
+		}
+		if(assault) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Assault'";
+		}
+		if(burglary) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Burglary'";
+		}
+		if(publicS) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Public indecency'";
+		}
+		if(tax) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Tax Evasion'";
+		}
+		if(bribery) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Bribery'";
+		}
+		if(extortion) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Extortion'";
+		}
+		if(falseS) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'False Pretenses'";
+		}
+		if(theft) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " crt.typeName = 'Theft'";
+		}
+		if(!startDate.equals("")) {
+			if(crt) {
+				query = "SELECT * FROM (" + query + ")";
+			}
+			query += " WHERE";
+			query += " case_date >= '" + startDate + "'";
+			if(!endDate.equals("")) {
+				query += " and case_date <= '" + endDate + "'";
+			}
+		} else if(!endDate.equals("")) {
+			if(crt) {
+				query = "SELECT * FROM (" + query + ")";
+			}
+			query += " WHERE case_date <= '" + endDate + "'";
+			
+		}
+
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 	
 	
 	//Division query
@@ -86,10 +223,10 @@ public class Driver {
 	/*
 	 * delete queries
 	 */
-	//Delete with cascades - Case 1
-	private ResultSet deleteRecord() {
+	//Delete without cascades - Case 1
+	private ResultSet deleteRecord(String recordID) {
 		ResultSet rs = null;
-		String query = "TODO";
+		String query = "delete from court where recordID = '" + recordID +"'";
 		try {
 			rs = this.con.createStatement().executeQuery(query);
 		} catch (SQLException e) {
@@ -98,10 +235,10 @@ public class Driver {
 		return rs;
 	}
 	
-	//Delete without cascades - Case 2
-	private ResultSet deleteTrial() {
+	//Delete with cascades - Case 2
+	private ResultSet deleteTrial(int SIN) {
 		ResultSet rs = null;
-		String query = "TODO";
+		String query = "delete from People where SIN = " + SIN;
 		try {
 			rs = this.con.createStatement().executeQuery(query);
 		} catch (SQLException e) {
@@ -116,6 +253,8 @@ public class Driver {
 		Driver currDriver = getDriver();
 		
 		ResultSet rs = currDriver.getTest();
+		//ResultSet rs = currDriver.getRecord("2017-06-30", "2017-08-30", true, true, true, false);
+		
 		try {
 			while(rs.next()) {
 				System.out.println("test :( ");

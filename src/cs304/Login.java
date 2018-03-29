@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class Login {
@@ -46,7 +47,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 478, 344);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -72,6 +73,23 @@ public class Login {
 		frame.getContentPane().add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("start");
+				if(idField.getText().equals("admin")) {
+					String passText = new String(passwordField.getPassword());
+					System.out.println("good1");
+					if(passText.equals("admin")) {
+						System.out.println("good2");
+						FrontEnd window = new FrontEnd();
+						window.frame.setVisible(true);
+						frame.dispose();
+						//frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+					}
+				}
+				
+			}
+		});
 		btnLogin.setBounds(59, 260, 85, 21);
 		frame.getContentPane().add(btnLogin);
 		
