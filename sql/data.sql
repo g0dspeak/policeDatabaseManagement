@@ -160,7 +160,7 @@ insert into People values
 ('905-456-1291',228844098,'Betty G. Boudreaux','4770 Orenda Rd');
 
 insert into People values
-('450-560-2186',850346910,'Susan J. Cohrs','386 Vict Park Ave');
+('450-560-2186',850346920,'Susan J. Cohrs','386 Vict Park Ave');
 
 insert into People values
 ('780-795-9580',342497286,'Karen M. Rickard','4899 Park Ct');
@@ -178,7 +178,7 @@ insert into People values
 -- Victim
 insert into Victim values(228844098);
 
-insert into Victim values(850346910);
+insert into Victim values(850346920);
 
 insert into Victim values(342497286);
 
@@ -259,9 +259,6 @@ insert into peopleInvolved values
 
 insert into peopleInvolved values
 ('UTB-MCF',171430713);
-
-insert into peopleInvolved values
-('KUI-SHJ',970216780);
 
 insert into peopleInvolved values
 ('SFR-DMV',573160412);
