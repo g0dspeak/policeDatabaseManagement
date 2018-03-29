@@ -258,7 +258,7 @@ insert into peopleInvolved values
 ('UTB-MCF',256828674);
 
 insert into peopleInvolved values
-('KUI-SHJ',970216780);
+('UTB-MCF',171430713);
 
 insert into peopleInvolved values
 ('SFR-DMV',573160412);
@@ -327,6 +327,7 @@ insert into Charge values
 insert into Charge values
 (35482235,'GBV-DDW');
 
+
 insert into CriminalType values
 ('Homicide');
 
@@ -338,6 +339,24 @@ insert into CriminalType values
 
 insert into CriminalType values
 ('Burglary');
+
+insert into CriminalType values
+('Public indecency');
+
+insert into CriminalType values
+('Tax Evasion');
+
+insert into CriminalType values
+('Bribery');
+
+insert into CriminalType values
+('Extortion');
+
+insert into CriminalType values
+('False Pretenses');
+
+insert into CriminalType values
+('Theft');
 
 --insert into CriminalRecordType values
 -- ... record id and criminal type
