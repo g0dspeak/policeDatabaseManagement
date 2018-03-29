@@ -35,7 +35,7 @@ insert into Record values
 ('WEH-XQR','Bobby Johnson, 2 Counts Assault', '2016-05-07');
 
 insert into Record values
-('LKS-PYT','Andrew Rice, 8 Counts Public Indecency, 2 Counts Homocide', '2017-09-22');
+('LKS-PYT','Andrew Rice, 8 Counts Public Indecency', '2017-09-22');
 
 insert into Record values
 ('LBN-LOH', 'June V. Parker, 1 Count Tax Evasion','2007-11-07');
@@ -81,7 +81,7 @@ insert into Court values
 ('WEH-XQR',59871234,'Alvin Robert Cornelius','Bobby Johnson was charged with domestic assault and found guilty. Serving time: 8 months + $20,000 fine', 'guilty', '2016-08-26');
 
 insert into Court values
-('LKS-PYT',35178008,'Ajmal Mian','Andrew Rice was charged with public indecency and involuntary manslaughter and found guilty for both offences. Serving time: 14 months + $100,000 fine', 'guilty', '2016-11-29');
+('LKS-PYT',35178008,'Ajmal Mian','Andrew Rice was charged with public indecency and found guilty for. Serving time: 14 months + $100,000 fine', 'guilty', '2016-11-29');
 
 insert into Court values
 ('LBN-LOH',68888757,'Alvin Robert Cornelius','June V. Parker was charged with tax evasion and was found guilty. Her accountant Karen Rickard was not found at fault. Serving time: 5 years', 'guilty', '2007-12-25');
@@ -373,9 +373,6 @@ insert into CriminalRecordType values
 
 insert into CriminalRecordType values
 ('LKS-PYT', 'Public indecency');
-
-insert into CriminalRecordType values
-('LKS-PYT', 'Homicide');
 
 insert into CriminalRecordType values
 ('LBN-LOH', 'Tax Evasion');
