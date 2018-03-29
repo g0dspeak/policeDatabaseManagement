@@ -358,6 +358,53 @@ insert into CriminalType values
 insert into CriminalType values
 ('Theft');
 
---insert into CriminalRecordType values
--- ... record id and criminal type
+
+insert into CriminalRecordType values
+('XTY-PHW', 'Homicide');
+
+insert into CriminalRecordType values
+('PSH-TED','Arson');
+
+insert into CriminalRecordType values
+('WEH-XQR','Assault');
+
+insert into CriminalRecordType values
+('MEP-HGF','Burglary');
+
+insert into CriminalRecordType values
+('LKS-PYT', 'Public indecency');
+
+insert into CriminalRecordType values
+('LKS-PYT', 'Homicide');
+
+insert into CriminalRecordType values
+('LBN-LOH', 'Tax Evasion');
+
+insert into CriminalRecordType values
+('CTQ-III', 'Tax Evasion');
+
+insert into CriminalRecordType values
+('BJK-YHA', 'Bribery');
+
+insert into CriminalRecordType values
+('UTB-MCF','Extortion');
+
+insert into CriminalRecordType values
+('KUI-SHJ','False Pretenses');
+
+insert into CriminalRecordType values
+('SFR-DMV', 'Theft');
+
+insert into CriminalRecordType values
+('RHB-CNQ', 'Theft');
+
+insert into CriminalRecordType values
+('RUA-CCB', 'Theft');
+
+insert into CriminalRecordType values
+('TBM-TIT', 'Homicide');
+
+insert into CriminalRecordType values
+('GBV-DDW', 'Tax Evasion');
+
 
