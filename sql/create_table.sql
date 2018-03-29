@@ -1,21 +1,21 @@
 create table Officer
 ( Address char(30) not null,
     ID Integer not null, 
-    Hired date not null,
-    Name char(20) not null, 
+    Name char(25) not null, 
+    Hired char(10) not null,
     PRIMARY KEY (ID) );
 
 create table Record
 ( ID char(7) not null,
     Description char(100) not null, 
-    Case_date date not null,
+    Case_date char(10) not null,
     PRIMARY KEY (ID) );
 
 create table People
 ( PhoneNumber char(15) not null,
     SIN integer not null,
-    Name char(20) not null,
-    Address char(20) not null,
+    Name char(25) not null,
+    Address char(25) not null,
     PRIMARY KEY (SIN) );
 
 create table CriminalType
@@ -25,10 +25,10 @@ create table CriminalType
 create table Court 
 ( RecordID char(7) not null,
     CourtID integer not null,
-    Judge char(20) not null,
+    Judge char(25) not null,
     Description char(300) not null,
     Result char(10) not null,
-    Hearing date not null,  
+    Hearing char(10) not null,  
     PRIMARY KEY (CourtID),
     foreign key (RecordID) references Record );
 

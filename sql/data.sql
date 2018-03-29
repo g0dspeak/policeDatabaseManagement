@@ -17,11 +17,10 @@ insert into Officer values
 ('224 Dry Pine Bay Rd', 35482235, 'Richard Currey', '2004-12-31');
 
 insert into Officer values
-('348 Lock Street', 31837580, 'Audra W. Rodriguez' '2008-05-30');
+('348 Lock Street', 31837580, 'Audra W. Rodriguez', '2008-05-30');
 
 insert into Officer values
 ('3893 Landon Street', 18078143, 'Judy Rich', '2014-07-25');
-
 
 insert into Record values
 ('XTY-PHW', 'Champion, 1  Counts Homicide', '2006-12-10');
