@@ -16,6 +16,7 @@ create table People
     SIN integer not null,
     Name char(25) not null,
     Address char(25) not null,
+    Age integer not null,
     PRIMARY KEY (SIN) );
 
 create table CriminalType
