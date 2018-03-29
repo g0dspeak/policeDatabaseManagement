@@ -40,18 +40,18 @@ create table CriminalRecordType
     foreign key (RecordID) references Record on delete cascade, 
     foreign key (TypeName) references CriminalType on delete cascade);
 
-create table peopleInvolved
-( recordID    char(7) not null,
-    Sin        INTEGER not null,
-    Primary key(recordID, Sin),
-    foreign key (recordID) references Record(ID) on delete cascade,
-    foreign key (Sin) references people(SIN) on delete cascade);
+create table PeopleInvolved
+( RecordID    char(7) not null,
+    SIN        INTEGER not null,
+    Primary key(RecordID, SIN),
+    foreign key (RecordID) references Record(ID) on delete cascade,
+    foreign key (SIN) references people(SIN) on delete cascade);
 
 create table Charge
-( officerID integer not null,
-    recordID char(7) not null, 
-    PRIMARY KEY (officerID, recordID),
-    foreign key (officerID) references Officer(ID) on delete cascade,
+( OfficerID integer not null,
+    RecordID char(7) not null, 
+    PRIMARY KEY (OfficerID, RecordID),
+    foreign key (OfficerID) references Officer(ID) on delete cascade,
     foreign key (recordID) references Record(ID) on delete cascade);
     
 create table Victim (
