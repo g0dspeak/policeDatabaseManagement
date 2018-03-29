@@ -175,6 +175,51 @@ insert into People values
 ('867-634-5372',171430713,'Gayle K. Rice','4009 47th Avenue');
 
 
+-- Victim
+insert into Victim values(228844098);
+
+insert into Victim values(850346910);
+
+insert into Victim values(342497286);
+
+insert into Victim values(077916732);
+
+insert into Victim values(256828674);
+
+insert into Victim values(171430713);	
+
+-- Suspect
+insert into Suspect values(362551764);
+
+insert into Suspect values(360978753);
+
+insert into Suspect values(251161287);
+
+insert into Suspect values(580372514);
+
+insert into Suspect values(32147063);
+
+insert into Suspect values(106225829);
+
+insert into Suspect values(25358530);
+
+insert into Suspect values(690192607);
+
+insert into Suspect values(322859865);
+
+insert into Suspect values(970216780);
+
+insert into Suspect values(573160412);
+
+insert into Suspect values(785088672);
+
+insert into Suspect values(555839346);
+
+insert into Suspect values(857181190);
+
+insert into Suspect values(850346910);
+
+
 
 insert into peopleInvolved  values
 ('XTY-PHW',362551764);
