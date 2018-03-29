@@ -46,13 +46,17 @@ create table PeopleInvolved
     Primary key(RecordID, SIN),
     foreign key (RecordID) references Record(ID) on delete cascade,
     foreign key (SIN) references people(SIN) on delete cascade);
+    
+    --changed the capitalization on recordId -> RecordID and Sin -> SIN
 
 create table Charge
 ( OfficerID integer not null,
     RecordID char(7) not null, 
     PRIMARY KEY (OfficerID, RecordID),
     foreign key (OfficerID) references Officer(ID) on delete cascade,
-    foreign key (recordID) references Record(ID) on delete cascade);
+    foreign key (RecordID) references Record(ID) on delete cascade);
+    
+    --changed the capitalization on officerId -> OfficerID and recordID -> RecordID
     
 create table Victim (
 SIN integer not null,
