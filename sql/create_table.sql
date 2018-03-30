@@ -20,7 +20,7 @@ create table People
     PRIMARY KEY (SIN) );
 
 create table CriminalType
-( TypeName char(10) not null,
+( TypeName char(20) not null,
     PRIMARY KEY (TypeName) );
 
 create table Court 
@@ -35,7 +35,7 @@ create table Court
 
 create table CriminalRecordType 
 ( RecordID char(7) not null, 
-    TypeName char(15) not null, 
+    TypeName char(20) not null, 
     PRIMARY KEY (RecordID), 
     foreign key (RecordID) references Record on delete cascade, 
     foreign key (TypeName) references CriminalType on delete cascade);

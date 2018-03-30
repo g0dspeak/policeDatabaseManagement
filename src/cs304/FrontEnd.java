@@ -89,6 +89,8 @@ public class FrontEnd {
 		validGlobal = valid;
 	}
 
+	public JTabbedPane tabbedPane;
+	public JPanel panel_1;
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -98,7 +100,7 @@ public class FrontEnd {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 982, 518);
 		frame.getContentPane().add(tabbedPane);
 		
@@ -611,9 +613,19 @@ public class FrontEnd {
 				if(error || !selected) {
 					//error, violation~!!!
 					result_area.setText("CONSTRAINT VIOLATION!!! UPDATE NOT SUCCESSFUL");
-				} else {
-					driver.updateRecord(recordText.getText(), type, description.getText(), dateR.getText());
+					return;
+				} 
+				
+				try {
+					if(!driver.getOfficer(officerID.getText()).next()) {
+						result_area.setText("CONSTRAINT VIOLATION!!! UPDATE NOT SUCCESSFUL");
+						return;
+					}
+				} catch (SQLException e) {
+					;
 				}
+
+				driver.updateRecord(recordText.getText(), type, description.getText(), dateR.getText());
 
 			}
 		});

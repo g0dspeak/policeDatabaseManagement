@@ -219,7 +219,7 @@ public class Driver {
 		ResultSet rs = null;
 		String query = "select r.description, r.case_date, c.courtid, c.judge, c.description, c.result, c.hearing, crt.typename, ch.officerID "
 				+ "from record r, court c, criminalRecordType crt, charge ch "
-				+ "where r.id=c.recordID and r.id=crt.recordID and r.id= + '" + recordID + "'";
+				+ "where r.id=c.recordID and r.id=crt.recordID and r.id= '" + recordID + "'";
 		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
@@ -414,6 +414,18 @@ public class Driver {
 			e.printStackTrace();
 		}
 		return rs;		
+	}
+	public ResultSet getOfficer(String officerID) {
+		ResultSet rs = null;
+		String query = "select * from officer where id = '" + officerID + "'";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	
 	}
 
 	

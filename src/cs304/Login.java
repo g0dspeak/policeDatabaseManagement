@@ -75,18 +75,21 @@ public class Login {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("start");
 				if(idField.getText().equals("admin")) {
 					String passText = new String(passwordField.getPassword());
-					System.out.println("good1");
 					if(passText.equals("admin")) {
-						System.out.println("good2");
 						FrontEnd window = new FrontEnd();
 						window.frame.setVisible(true);
 						frame.dispose();
 						//frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 					}
-				} else {
+				} else if(idField.getText().equals("public")) {
+					FrontEnd window = new FrontEnd();
+					window.tabbedPane.removeTabAt(0);
+					window.frame.setVisible(true);
+					frame.dispose();
+				}
+				else {
 					JFrame frmLoginSystem = new JFrame("Exit");
 					if(JOptionPane.showConfirmDialog(frmLoginSystem,  "Wrong password or username. Use public for public access", "Login Systems", 
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
