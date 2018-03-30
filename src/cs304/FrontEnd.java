@@ -7,6 +7,9 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
@@ -30,29 +33,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextPane;
 
 public class FrontEnd {
 
 	JFrame frame;
 	private JTextField recordText;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
+	private JTextField nameS;
+	private JTextField addressS;
+	private JTextField phoneS;
+	private JTextField sinS;
+	private JTextField nameV;
+	private JTextField addressV;
+	private JTextField phoneV;
+	private JTextField sinV;
+	private JTextField officerID;
+	private JTextField dateR;
+	private JTextField trialID;
+	private JTextField judge;
+	private JTextField outcome;
+	private JTextField dateC;
 	private JTable table;
 	private JTextField startDate;
 	private JTextField endDate;
-	private JTextField textField_16;
 	private Driver driver = null;
 
 	/**
@@ -77,6 +80,13 @@ public class FrontEnd {
 	public FrontEnd() {
 		driver = Driver.getDriver();
 		initialize();
+	}
+
+	private String recordIDGlobal = null;
+	private boolean validGlobal = false;
+	private void setGlobals(String recordID, boolean valid) {
+		recordIDGlobal = recordID;
+		validGlobal = valid;
 	}
 
 	/**
@@ -106,29 +116,13 @@ public class FrontEnd {
 		panel.add(lblDescription);
 		
 		JTextArea description = new JTextArea();
-		description.setBounds(95, 49, 211, 185);
+		description.setBounds(95, 49, 211, 152);
 		panel.add(description);
 		
 		recordText = new JTextField();
 		recordText.setBounds(95, 23, 211, 19);
 		panel.add(recordText);
 		recordText.setColumns(10);
-		
-		JCheckBox chckbxType = new JCheckBox("Type 1");
-		chckbxType.setBounds(21, 240, 65, 21);
-		panel.add(chckbxType);
-		
-		JCheckBox chckbxType_1 = new JCheckBox("Type 2");
-		chckbxType_1.setBounds(85, 240, 65, 21);
-		panel.add(chckbxType_1);
-		
-		JCheckBox checkBox = new JCheckBox("Type 2");
-		checkBox.setBounds(152, 240, 65, 21);
-		panel.add(checkBox);
-		
-		JCheckBox checkBox_1 = new JCheckBox("Type 2");
-		checkBox_1.setBounds(219, 240, 65, 21);
-		panel.add(checkBox_1);
 		
 		JLabel lblPeoplesInformation = new JLabel("Suspect Information");
 		lblPeoplesInformation.setBounds(359, 26, 93, 13);
@@ -150,25 +144,25 @@ public class FrontEnd {
 		lblSin.setBounds(369, 118, 70, 13);
 		panel.add(lblSin);
 		
-		textField = new JTextField();
-		textField.setBounds(449, 49, 135, 19);
-		panel.add(textField);
-		textField.setColumns(10);
+		nameS = new JTextField();
+		nameS.setBounds(449, 49, 135, 19);
+		panel.add(nameS);
+		nameS.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(449, 72, 135, 19);
-		panel.add(textField_1);
+		addressS = new JTextField();
+		addressS.setColumns(10);
+		addressS.setBounds(449, 72, 135, 19);
+		panel.add(addressS);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(449, 95, 135, 19);
-		panel.add(textField_2);
+		phoneS = new JTextField();
+		phoneS.setColumns(10);
+		phoneS.setBounds(449, 95, 135, 19);
+		panel.add(phoneS);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(449, 118, 135, 19);
-		panel.add(textField_3);
+		sinS = new JTextField();
+		sinS.setColumns(10);
+		sinS.setBounds(449, 118, 135, 19);
+		panel.add(sinS);
 		
 		JLabel lblVictimInformation = new JLabel("Victim Information");
 		lblVictimInformation.setBounds(359, 176, 93, 13);
@@ -190,50 +184,50 @@ public class FrontEnd {
 		label_4.setBounds(369, 268, 70, 13);
 		panel.add(label_4);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(449, 199, 135, 19);
-		panel.add(textField_4);
+		nameV = new JTextField();
+		nameV.setColumns(10);
+		nameV.setBounds(449, 199, 135, 19);
+		panel.add(nameV);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(449, 222, 135, 19);
-		panel.add(textField_5);
+		addressV = new JTextField();
+		addressV.setColumns(10);
+		addressV.setBounds(449, 222, 135, 19);
+		panel.add(addressV);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(449, 245, 135, 19);
-		panel.add(textField_6);
+		phoneV = new JTextField();
+		phoneV.setColumns(10);
+		phoneV.setBounds(449, 245, 135, 19);
+		panel.add(phoneV);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(449, 268, 135, 19);
-		panel.add(textField_7);
+		sinV = new JTextField();
+		sinV.setColumns(10);
+		sinV.setBounds(449, 268, 135, 19);
+		panel.add(sinV);
 		
 		JLabel lblOfficerInformation = new JLabel("Officer Information");
-		lblOfficerInformation.setBounds(21, 301, 93, 13);
+		lblOfficerInformation.setBounds(21, 320, 129, 13);
 		panel.add(lblOfficerInformation);
 		
 		JLabel lblOfficerId = new JLabel("Officer ID:");
-		lblOfficerId.setBounds(31, 324, 62, 13);
+		lblOfficerId.setBounds(31, 343, 62, 13);
 		panel.add(lblOfficerId);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(103, 321, 135, 19);
-		panel.add(textField_8);
+		officerID = new JTextField();
+		officerID.setColumns(10);
+		officerID.setBounds(103, 340, 135, 19);
+		panel.add(officerID);
 		
 		JLabel lblDate = new JLabel("Date:");
-		lblDate.setBounds(31, 271, 62, 13);
+		lblDate.setBounds(21, 294, 62, 13);
 		panel.add(lblDate);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(103, 268, 135, 19);
-		panel.add(textField_9);
+		dateR = new JTextField();
+		dateR.setColumns(10);
+		dateR.setBounds(93, 291, 135, 19);
+		panel.add(dateR);
 		
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(21, 379, 85, 21);
+		btnUpdate.setBounds(21, 414, 85, 21);
 		panel.add(btnUpdate);
 		
 		JLabel lblCourtInformation = new JLabel("Court Information");
@@ -256,33 +250,29 @@ public class FrontEnd {
 		lblDate_1.setBounds(630, 118, 70, 13);
 		panel.add(lblDate_1);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(710, 49, 135, 19);
-		panel.add(textField_10);
+		trialID = new JTextField();
+		trialID.setColumns(10);
+		trialID.setBounds(710, 49, 135, 19);
+		panel.add(trialID);
 		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(710, 72, 135, 19);
-		panel.add(textField_11);
+		judge = new JTextField();
+		judge.setColumns(10);
+		judge.setBounds(710, 72, 135, 19);
+		panel.add(judge);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(710, 95, 135, 19);
-		panel.add(textField_12);
+		outcome = new JTextField();
+		outcome.setColumns(10);
+		outcome.setBounds(710, 95, 135, 19);
+		panel.add(outcome);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(710, 118, 135, 19);
-		panel.add(textField_13);
+		dateC = new JTextField();
+		dateC.setColumns(10);
+		dateC.setBounds(710, 118, 135, 19);
+		panel.add(dateC);
 		
 		JLabel label = new JLabel("Description:");
 		label.setBounds(630, 141, 72, 13);
 		panel.add(label);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(710, 141, 205, 185);
-		panel.add(textArea);
 		
 		JLabel lblResult = new JLabel("Result:");
 		lblResult.setBounds(129, 383, 45, 13);
@@ -293,8 +283,53 @@ public class FrontEnd {
 		panel.add(textArea_1);
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(21, 410, 85, 21);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ResultSet allrs = driver.deleteRecord(recordText.getText());
+			}
+		});
+		btnDelete.setBounds(21, 445, 85, 21);
 		panel.add(btnDelete);
+		
+		JCheckBox homicideU = new JCheckBox("Homicide");
+		homicideU.setBounds(21, 207, 84, 21);
+		panel.add(homicideU);
+		
+		JCheckBox arsonU = new JCheckBox("Arson");
+		arsonU.setBounds(107, 207, 65, 21);
+		panel.add(arsonU);
+		
+		JCheckBox assaultU = new JCheckBox("Assault");
+		assaultU.setBounds(183, 207, 72, 21);
+		panel.add(assaultU);
+		
+		JCheckBox burglaryU = new JCheckBox("Burglary");
+		burglaryU.setBounds(21, 235, 84, 21);
+		panel.add(burglaryU);
+		
+		JCheckBox publicU = new JCheckBox("Public indecency");
+		publicU.setBounds(107, 258, 179, 21);
+		panel.add(publicU);
+		
+		JCheckBox briberyU = new JCheckBox("Bribery");
+		briberyU.setBounds(183, 235, 72, 21);
+		panel.add(briberyU);
+		
+		JCheckBox extortionU = new JCheckBox("Extortion");
+		extortionU.setBounds(21, 258, 84, 21);
+		panel.add(extortionU);
+		
+		JCheckBox theftU = new JCheckBox("Theft");
+		theftU.setBounds(107, 237, 72, 21);
+		panel.add(theftU);
+		
+		JCheckBox taxU = new JCheckBox("Tax Evasion");
+		taxU.setBounds(252, 207, 112, 21);
+		panel.add(taxU);
+		
+		JCheckBox falseU = new JCheckBox("False Pretenses");
+		falseU.setBounds(251, 241, 112, 21);
+		panel.add(falseU);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(UIManager.getColor("Button.background"));
@@ -302,27 +337,11 @@ public class FrontEnd {
 		panel_1.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(470, 90, 460, 324);
+		scrollPane.setBounds(470, 13, 460, 401);
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		Button button = new Button("populateTest");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-				/*
-				 * ResultSet rs = pst.executeQuery();
-				 * 
-				 * 
-				 * 
-				 */
-
-			}
-		});
-		button.setBounds(599, 43, 120, 20);
-		panel_1.add(button);
 		
 		JCheckBox homicideS = new JCheckBox("Homicide");
 		homicideS.setBounds(6, 60, 84, 21);
@@ -358,32 +377,151 @@ public class FrontEnd {
 		endDate.setBounds(82, 31, 135, 19);
 		panel_1.add(endDate);
 		
-
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(782, 222, 2, 2);
+		panel.add(scrollPane_2);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(630, 163, 279, 118);
+		panel.add(scrollPane_3);
+		
+		JTextArea descriptionC = new JTextArea();
+		scrollPane_3.setViewportView(descriptionC);
+		
+		
+		JButton btnFind = new JButton("Find");
+		btnFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ResultSet allrs = driver.getAllButVictims(recordText.getText());
+				ResultSet victimrs = driver.getVictim(recordText.getText());
+				ResultSet suspectrs = driver.getSuspect(recordText.getText());
+				try {
+					System.out.println("start");
+					if(allrs.next()) {
+						System.out.println("first if");
+						description.setText("");
+						description.setText(allrs.getString(1));
+						dateR.setText("");
+						dateR.setText(allrs.getString(2));
+						trialID.setText("");
+						trialID.setText(allrs.getString(3));
+						judge.setText("");
+						judge.setText(allrs.getString(4));
+						description.setText("");
+						descriptionC.setText(allrs.getString(5));
+						outcome.setText("");
+						outcome.setText(allrs.getString(6));
+						dateC.setText("");
+						dateC.setText(allrs.getString(7));
+						String type = allrs.getString(8).trim();
+						System.out.println(type);
+						if(type.equals("Homicide")) {
+							System.out.println("wtf");
+							homicideU.setSelected(true);
+						} else {
+							System.out.println("wtftwf");
+							homicideU.setSelected(false);
+						} if(type.equals("Arson")) {
+							arsonU.setSelected(true);
+						} else {
+							arsonU.setSelected(false);
+						} if(type.equals("Assault")) {
+							assaultU.setSelected(true);
+						} else {
+							assaultU.setSelected(false);
+						} if(type.equals("Burglary")) {
+							burglaryU.setSelected(true);
+						} else {
+							burglaryU.setSelected(false);
+						} if(type.equals("Public indecency")) {
+							publicU.setSelected(true);
+						} else {
+							publicU.setSelected(false);
+						} if(type.equals("Tax Evasion")) {
+							taxU.setSelected(true);
+						} else {
+							taxU.setSelected(false);
+						} if(type.equals("Bribery")) {
+							briberyU.setSelected(true);
+						} else {
+							briberyU.setSelected(false);
+						} if(type.equals("Extortion")) {
+							extortionU.setSelected(true);
+						} else {
+							extortionU.setSelected(false);
+						} if(type.equals("Theft")) {
+							theftU.setSelected(true);
+						} else {
+							theftU.setSelected(false);
+						} if(type.equals("False Pretenses")) {
+							falseU.setSelected(true);
+						} else {
+							falseU.setSelected(false);
+						}
+						
+						officerID.setText("");
+						officerID.setText(allrs.getString(9));
+						setGlobals(recordText.getText(), true);
+					}
+					if(victimrs.next()) {
+						nameS.setText("");
+						nameS.setText(victimrs.getString(2));
+						addressS.setText("");
+						addressS.setText(victimrs.getString(3));
+						phoneS.setText("");
+						phoneS.setText(victimrs.getString(4));
+						sinS.setText("");
+						sinS.setText(victimrs.getString(5));
+					}
+					if(suspectrs.next()) {
+						nameV.setText("");
+						nameV.setText(suspectrs.getString(2));
+						addressV.setText("");
+						addressV.setText(suspectrs.getString(3));
+						phoneV.setText("");
+						phoneV.setText(suspectrs.getString(4));
+						sinV.setText("");
+						sinV.setText(suspectrs.getString(5));
+					}
+					
+					
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
+		btnFind.setBounds(21, 382, 85, 21);
+		panel.add(btnFind);
+		
+		JButton btnDeleteCourt = new JButton("Delete court");
+		btnDeleteCourt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				driver.deleteTrial(recordText.getText());
+			}
+		});
+		btnDeleteCourt.setBounds(628, 290, 129, 21);
+		panel.add(btnDeleteCourt);
 
 		
-		JLabel lblRecordId_1 = new JLabel("Record ID:");
-		lblRecordId_1.setBounds(16, 204, 72, 13);
+		JLabel lblRecordId_1 = new JLabel("Staticstics");
+		lblRecordId_1.setBounds(18, 195, 72, 13);
 		panel_1.add(lblRecordId_1);
-		
-		textField_16 = new JTextField();
-		textField_16.setBounds(82, 201, 135, 20);
-		panel_1.add(textField_16);
-		textField_16.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 183, 340, 2);
 		panel_1.add(separator);
 		
-		JButton btnTotalCounts = new JButton("Total counts");
-		btnTotalCounts.setBounds(180, 152, 120, 21);
-		panel_1.add(btnTotalCounts);
-		
-		JButton btnRecordDetails = new JButton("Record details");
+		JButton btnRecordDetails = new JButton("Maximum");
 		btnRecordDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				table.setModel(DbUtils.resultSetToTableModel(driver.getMax()));
 			}
 		});
-		btnRecordDetails.setBounds(10, 231, 120, 21);
+		btnRecordDetails.setBounds(270, 218, 120, 21);
 		panel_1.add(btnRecordDetails);
 		
 		JCheckBox publicS = new JCheckBox("Public indecency");
@@ -412,21 +550,55 @@ public class FrontEnd {
 		JButton btnFindRecord = new JButton("Find Records");
 		btnFindRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-
-				//table.setModel(DbUtils.resultSetToTableModel(driver.getTest()));
 				table.setModel(DbUtils.resultSetToTableModel(driver.getRecordFilter(startDate.getText(), endDate.getText(), 
 									homicideS.isSelected(), arsonS.isSelected(), assaultS.isSelected(), burglaryS.isSelected(), 
 									publicS.isSelected(), taxS.isSelected(), briberyS.isSelected(), extortionS.isSelected(), 
 									falseS.isSelected(), theftS.isSelected())));
-
-				//table.setModel(DbUtils.resultSetToTableModel(driver.getRecord(startDate.getText(), endDate.getText())));
-				//getRecordFilter
-				
 			}
-		});	panel_1.add(falseS);
-		btnFindRecord.setBounds(50, 152, 120, 21);
+		});	
+		panel_1.add(falseS);
+		btnFindRecord.setBounds(10, 152, 120, 21);
 		panel_1.add(btnFindRecord);
+		
+		JButton btnTotalCounts = new JButton("Total counts");
+		btnTotalCounts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table.setModel(DbUtils.resultSetToTableModel(driver.getTotalCount(homicideS.isSelected(), arsonS.isSelected(), 
+						assaultS.isSelected(), burglaryS.isSelected(), publicS.isSelected(), taxS.isSelected(), 
+						briberyS.isSelected(), extortionS.isSelected(), falseS.isSelected(), theftS.isSelected())));
+			}
+
+		});
+		btnTotalCounts.setBounds(140, 152, 120, 21);
+		panel_1.add(btnTotalCounts);
+		
+		JButton btnCourtDetails = new JButton("Court Details");
+		btnCourtDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table.setModel(DbUtils.resultSetToTableModel(driver.getCourtNumber()));
+			}
+		});
+		btnCourtDetails.setBounds(270, 152, 120, 21);
+		panel_1.add(btnCourtDetails);
+		
+		JButton btnMinimum = new JButton("Average");
+		btnMinimum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table.setModel(DbUtils.resultSetToTableModel(driver.getAverage()));
+			}
+		});
+
+		btnMinimum.setBounds(136, 218, 120, 21);
+		panel_1.add(btnMinimum);
+		
+		JButton button_1 = new JButton("Minimum");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				table.setModel(DbUtils.resultSetToTableModel(driver.getMin()));
+			}
+		});
+		button_1.setBounds(6, 218, 120, 21);
+		panel_1.add(button_1);
 		
 	}
 

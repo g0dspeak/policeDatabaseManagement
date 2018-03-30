@@ -86,6 +86,11 @@ public class Login {
 						frame.dispose();
 						//frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 					}
+				} else {
+					JFrame frmLoginSystem = new JFrame("Exit");
+					if(JOptionPane.showConfirmDialog(frmLoginSystem,  "Wrong password or username. Use public for public access", "Login Systems", 
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+					}
 				}
 				
 			}

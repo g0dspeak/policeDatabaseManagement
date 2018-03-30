@@ -72,6 +72,19 @@ public class Driver {
 		return rs;
 	}
 	
+	public ResultSet getRecord(String id) {
+		ResultSet rs = null;
+		String query = "SELECT * FROM Record where Record.ID = '" + id + "'";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	}
+	
+	
 	//Join query
 	public ResultSet getRecordFilter(String startDate, String endDate, boolean homicide, boolean arson, boolean assault, boolean burglary,
 											boolean publicS, boolean tax, boolean bribery, boolean extortion, boolean falseS, boolean theft) {
@@ -202,14 +215,203 @@ public class Driver {
 		return rs;
 	}
 	
+	public ResultSet getAllButVictims(String recordID) {
+		ResultSet rs = null;
+		String query = "select r.description, r.case_date, c.courtid, c.judge, c.description, c.result, c.hearing, crt.typename, ch.officerID "
+				+ "from record r, court c, criminalRecordType crt, charge ch "
+				+ "where r.id=c.recordID and r.id=crt.recordID and r.id= + '" + recordID + "'";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;	
+	}
+	public ResultSet getVictim(String recordID) {
+		ResultSet rs = null;
+		String query = "select p.age, p.name, p.address, p.phoneNumber, p.sin from people p, PeopleInvolved, Victim "
+				+ "where p.sin = PeopleInvolved.sin and victim.sin=p.sin and PeopleInvolved.recordid='" + recordID + "'";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;	
+	}
+
+	public ResultSet getSuspect(String recordID) {
+		ResultSet rs = null;
+		String query = "select p.age, p.name, p.address, p.phoneNumber, p.sin from people p, PeopleInvolved, Suspect "
+				+ "where p.sin = PeopleInvolved.sin and suspect.sin=p.sin and PeopleInvolved.recordid='" + recordID + "'";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;	
+	}
 	
 	//Division query
+	public ResultSet getCourtNumber() {
+		ResultSet rs = null;
+		String query = "SELECT * FROM Record WHERE EXISTS(SELECT recordID FROM court WHERE court.recordID = record.ID)";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 
 	
 	//Aggregation query
-	
+	public ResultSet getTotalCount(boolean homicide, boolean arson, boolean assault, boolean burglary,
+			boolean publicS, boolean tax, boolean bribery, boolean extortion, boolean falseS, boolean theft) {
+		ResultSet rs = null;
+		boolean where = false;
+		String query = "SELECT COUNT(RecordID) AS total_count FROM CriminalRecordType";
+
+		if(homicide) {
+			if(!where) {
+				query += " WHERE";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Homicide'";
+		}
+		if(arson) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Arson'";
+		}
+		if(assault) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Assault'";
+		}
+		if(burglary) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Burglary'";
+		}
+		if(publicS) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Public indecency'";
+		}
+		if(tax) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Tax Evasion'";
+		}
+		if(bribery) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Bribery'";
+		}
+		if(extortion) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Extortion'";
+		}
+		if(falseS) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'False Pretenses'";
+		}
+		if(theft) {
+			if(!where) {
+				query += " where";
+				where = true;
+			} else {
+				query += " OR";
+			}
+			query += " typeName = 'Theft'";
+		}
+		
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}	
 	
 	//Nested aggregation with group-by
+	public ResultSet getAverage() {
+		ResultSet rs = null;
+		String query = "select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, "
+						+ "CriminalRecordType crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	}
+	public ResultSet getMin() {
+		ResultSet rs = null;
+		String query = "select min(avg_age) from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, "
+						+ "CriminalRecordType crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName)";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	}
+	public ResultSet getMax() {
+		ResultSet rs = null;
+		String query = "select max(avg_age) from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, "
+						+ "CriminalRecordType crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName)";
+		System.out.println(query);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	}
+
 	
 
 	/*
@@ -224,9 +426,10 @@ public class Driver {
 	 * delete queries
 	 */
 	//Delete without cascades - Case 1
-	private ResultSet deleteRecord(String recordID) {
+	public ResultSet deleteRecord(String recordID) {
 		ResultSet rs = null;
-		String query = "delete from court where recordID = '" + recordID +"'";
+		String query = "delete from Record where ID = '" + recordID + "'";
+		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
 		} catch (SQLException e) {
@@ -236,9 +439,10 @@ public class Driver {
 	}
 	
 	//Delete with cascades - Case 2
-	private ResultSet deleteTrial(int SIN) {
+	public ResultSet deleteTrial(String recordID) {
 		ResultSet rs = null;
-		String query = "delete from People where SIN = " + SIN;
+		String query = "delete from court where recordID = '" + recordID +"'";
+		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
 		} catch (SQLException e) {
