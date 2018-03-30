@@ -226,9 +226,6 @@ public class FrontEnd {
 		dateR.setBounds(93, 291, 135, 19);
 		panel.add(dateR);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(21, 414, 85, 21);
-		panel.add(btnUpdate);
 		
 		JLabel lblCourtInformation = new JLabel("Court Information");
 		lblCourtInformation.setBounds(620, 26, 93, 13);
@@ -278,9 +275,9 @@ public class FrontEnd {
 		lblResult.setBounds(129, 383, 45, 13);
 		panel.add(lblResult);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(167, 383, 332, 98);
-		panel.add(textArea_1);
+		JTextArea result_area = new JTextArea();
+		result_area.setBounds(167, 383, 332, 98);
+		panel.add(result_area);
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -328,7 +325,7 @@ public class FrontEnd {
 		panel.add(taxU);
 		
 		JCheckBox falseU = new JCheckBox("False Pretenses");
-		falseU.setBounds(251, 241, 112, 21);
+		falseU.setBounds(251, 241, 118, 21);
 		panel.add(falseU);
 		
 		JPanel panel_1 = new JPanel();
@@ -396,91 +393,76 @@ public class FrontEnd {
 				ResultSet victimrs = driver.getVictim(recordText.getText());
 				ResultSet suspectrs = driver.getSuspect(recordText.getText());
 				try {
-					System.out.println("start");
+					nameV.setText(null);
+					addressV.setText(null);
+					phoneV.setText(null);
+					sinV.setText(null);
+					nameS.setText(null);
+					result_area.setText(null);
+					addressS.setText(null);
+					phoneS.setText(null);
+					sinS.setText(null);
+					judge.setText(null);
+					dateR.setText(null);
+					trialID.setText(null);
+					outcome.setText(null);
+					dateC.setText(null);
+					officerID.setText(null);
+					description.setText(null);
+					homicideU.setSelected(false);
+					assaultU.setSelected(false);
+					arsonU.setSelected(false);
+					burglaryU.setSelected(false);
+					publicU.setSelected(false);
+					taxU.setSelected(false);
+					briberyU.setSelected(false);
+					extortionU.setSelected(false);
+					theftU.setSelected(false);
+					falseU.setSelected(false);
 					if(allrs.next()) {
-						System.out.println("first if");
-						description.setText("");
 						description.setText(allrs.getString(1));
-						dateR.setText("");
+						System.out.println(allrs.getString(1));
 						dateR.setText(allrs.getString(2));
-						trialID.setText("");
 						trialID.setText(allrs.getString(3));
-						judge.setText("");
 						judge.setText(allrs.getString(4));
-						description.setText("");
 						descriptionC.setText(allrs.getString(5));
-						outcome.setText("");
 						outcome.setText(allrs.getString(6));
-						dateC.setText("");
 						dateC.setText(allrs.getString(7));
 						String type = allrs.getString(8).trim();
-						System.out.println(type);
 						if(type.equals("Homicide")) {
-							System.out.println("wtf");
 							homicideU.setSelected(true);
-						} else {
-							System.out.println("wtftwf");
-							homicideU.setSelected(false);
 						} if(type.equals("Arson")) {
 							arsonU.setSelected(true);
-						} else {
-							arsonU.setSelected(false);
 						} if(type.equals("Assault")) {
 							assaultU.setSelected(true);
-						} else {
-							assaultU.setSelected(false);
 						} if(type.equals("Burglary")) {
 							burglaryU.setSelected(true);
-						} else {
-							burglaryU.setSelected(false);
 						} if(type.equals("Public indecency")) {
 							publicU.setSelected(true);
-						} else {
-							publicU.setSelected(false);
 						} if(type.equals("Tax Evasion")) {
 							taxU.setSelected(true);
-						} else {
-							taxU.setSelected(false);
 						} if(type.equals("Bribery")) {
 							briberyU.setSelected(true);
-						} else {
-							briberyU.setSelected(false);
 						} if(type.equals("Extortion")) {
 							extortionU.setSelected(true);
-						} else {
-							extortionU.setSelected(false);
 						} if(type.equals("Theft")) {
 							theftU.setSelected(true);
-						} else {
-							theftU.setSelected(false);
 						} if(type.equals("False Pretenses")) {
 							falseU.setSelected(true);
-						} else {
-							falseU.setSelected(false);
 						}
-						
-						officerID.setText("");
 						officerID.setText(allrs.getString(9));
 						setGlobals(recordText.getText(), true);
 					}
 					if(victimrs.next()) {
-						nameS.setText("");
 						nameS.setText(victimrs.getString(2));
-						addressS.setText("");
 						addressS.setText(victimrs.getString(3));
-						phoneS.setText("");
 						phoneS.setText(victimrs.getString(4));
-						sinS.setText("");
 						sinS.setText(victimrs.getString(5));
 					}
 					if(suspectrs.next()) {
-						nameV.setText("");
 						nameV.setText(suspectrs.getString(2));
-						addressV.setText("");
 						addressV.setText(suspectrs.getString(3));
-						phoneV.setText("");
 						phoneV.setText(suspectrs.getString(4));
-						sinV.setText("");
 						sinV.setText(suspectrs.getString(5));
 					}
 					
@@ -559,6 +541,84 @@ public class FrontEnd {
 		panel_1.add(falseS);
 		btnFindRecord.setBounds(10, 152, 120, 21);
 		panel_1.add(btnFindRecord);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean selected = false;
+				boolean error = false;
+				String type = "";
+				if(homicideU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Homicide";
+				}
+				if(arsonU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Arson";
+				}
+				if(assaultU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Assault";
+				}
+				if(burglaryU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Burglary";
+				}
+				if(publicU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Public indecency";
+				}
+				if(taxU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Tax Evasion";
+				}
+				if(briberyU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Bribery";
+				}
+				if(extortionU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Extortion";
+				}
+				if(falseU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "False Pretenses";
+				}
+				if(theftU.isSelected() == true) {
+					if(selected)
+						error = true;
+					selected = true;
+					type = "Theft";
+				}
+				if(error || !selected) {
+					//error, violation~!!!
+					result_area.setText("CONSTRAINT VIOLATION!!! UPDATE NOT SUCCESSFUL");
+				} else {
+					driver.updateRecord(recordText.getText(), type, description.getText(), dateR.getText());
+				}
+
+			}
+		});
+		btnUpdate.setBounds(21, 414, 85, 21);
+		panel.add(btnUpdate);
 		
 		JButton btnTotalCounts = new JButton("Total counts");
 		btnTotalCounts.addActionListener(new ActionListener() {

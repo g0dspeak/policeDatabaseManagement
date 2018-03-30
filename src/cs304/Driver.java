@@ -389,8 +389,10 @@ public class Driver {
 	}
 	public ResultSet getMin() {
 		ResultSet rs = null;
-		String query = "select min(avg_age) from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, "
-						+ "CriminalRecordType crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName)";
+		String query = "select * from (select avg(Age) as age, TypeName from People p, PeopleInvolved pi, CriminalRecordType "
+				+ "crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName) temp where temp.age = (select min(avg_age) "
+				+ "from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, CriminalRecordType crt where p.SIN = pi.Sin "
+				+ "and pi.recordID = crt.RecordID group by TypeName))";
 		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
@@ -401,8 +403,10 @@ public class Driver {
 	}
 	public ResultSet getMax() {
 		ResultSet rs = null;
-		String query = "select max(avg_age) from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, "
-						+ "CriminalRecordType crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName)";
+		String query = "select * from (select avg(Age) as age, TypeName from People p, PeopleInvolved pi, CriminalRecordType "
+				+ "crt where p.SIN = pi.Sin and pi.recordID = crt.RecordID group by TypeName) temp where temp.age = (select max(avg_age) "
+				+ "from (select avg(Age) as avg_age, TypeName from People p, PeopleInvolved pi, CriminalRecordType crt where p.SIN = pi.Sin "
+				+ "and pi.recordID = crt.RecordID group by TypeName))";
 		System.out.println(query);
 		try {
 			rs = this.con.createStatement().executeQuery(query);
@@ -418,6 +422,35 @@ public class Driver {
 	 * update & insert queries
 	 */
 	//Update with check constraint. Include the constraint in the code, but do it in the user interface as well
+	public ResultSet updateRecord(String id, String typeName, String description, String case_date) {
+		ResultSet rs = null;
+		String query = "UPDATE record SET Description = '" + description.trim() + "', case_date = '" + case_date + "' where id = '" + id + "'";
+		System.out.println(query);
+		String query2 = "UPDATE CriminalRecordType SET typeName = '" + typeName + "' where RecordID = '" + id + "'";
+		System.out.println(query2);
+		try {
+			rs = this.con.createStatement().executeQuery(query);
+			rs = this.con.createStatement().executeQuery(query2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;		
+	}
+	
+
+	public void insertCourt(int trialID, String Judge, String outcome, String date, String description) {
+		
+	}
+
+	public void insertSuspect(String name, String address, String phone, String SIN) {
+		
+	}
+	public void insertVictim(String name, String address, String phone, String SIN) {
+		
+	}
+	public void insertRecord(String recordID, String description, String type, String date, String officerID) {
+		
+	}
 	
 	
 	
